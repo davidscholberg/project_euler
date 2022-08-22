@@ -1,12 +1,11 @@
+from lib.get_digits import GetDigitsIterator
+
 def is_palindromic_number(n: int) -> bool:
     if n < 10:
         return True
     reverse_n = 0
-    power_of_ten = 1
-    while n // power_of_ten > 0:
-        current_digit = ((n % (power_of_ten * 10)) - (n % power_of_ten)) // power_of_ten
-        reverse_n = (reverse_n * 10) + current_digit
-        power_of_ten *= 10
+    for digit in GetDigitsIterator(n, reverse = True):
+        reverse_n = (reverse_n * 10) + digit
     return reverse_n == n
 
 def get_largest_palindromic_number_from_product_of_two_three_digit_numbers() -> int:
