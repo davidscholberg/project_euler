@@ -10,5 +10,5 @@ def get_pythagorean_triplet_that_sums_to_n(n: int) -> tuple:
                 return (a, b, c)
     return (0,)
 
-answer = math.prod(get_pythagorean_triplet_that_sums_to_n(1000))
-print(answer)
+def get_answer() -> int:
+    return math.prod(get_pythagorean_triplet_that_sums_to_n(1000))

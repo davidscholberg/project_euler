@@ -10,5 +10,5 @@ def get_smallest_natural_number_evenly_divisible_by_1_through_n(n: int) -> int:
             return multiple_of_n
         multiple_of_n += n
 
-answer = get_smallest_natural_number_evenly_divisible_by_1_through_n(20)
-print(answer)
+def get_answer() -> int:
+    return get_smallest_natural_number_evenly_divisible_by_1_through_n(20)

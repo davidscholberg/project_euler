@@ -1,12 +1,4 @@
-from lib.get_digits import GetDigitsIterator
-
-def is_palindromic_number(n: int) -> bool:
-    if n < 10:
-        return True
-    reverse_n = 0
-    for digit in GetDigitsIterator(n, reverse = True):
-        reverse_n = (reverse_n * 10) + digit
-    return reverse_n == n
+from lib.util.digits import is_palindromic_number
 
 def get_largest_palindromic_number_from_product_of_two_three_digit_numbers() -> int:
     largest_palindromic_number = 0
@@ -17,5 +9,5 @@ def get_largest_palindromic_number_from_product_of_two_three_digit_numbers() -> 
                 largest_palindromic_number = n
     return largest_palindromic_number
 
-answer = get_largest_palindromic_number_from_product_of_two_three_digit_numbers()
-print(answer)
+def get_answer() -> int:
+    return get_largest_palindromic_number_from_product_of_two_three_digit_numbers()

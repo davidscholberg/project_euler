@@ -22,3 +22,17 @@ class GetDigitsIterator:
         current_digit = (self._n // (10 ** self._digit_power)) % 10
         self._digit_power = self._digit_power_update_value(self._digit_power)
         return current_digit
+
+def get_first_x_digits(n: int, x: int) -> int:
+    return n // (10 ** (get_number_of_digits(n) - x))
+
+def get_number_of_digits(n: int) -> int:
+    return math.floor(math.log(n, 10)) + 1
+
+def is_palindromic_number(n: int) -> bool:
+    if n < 10:
+        return True
+    reverse_n = 0
+    for digit in GetDigitsIterator(n, reverse = True):
+        reverse_n = (reverse_n * 10) + digit
+    return reverse_n == n

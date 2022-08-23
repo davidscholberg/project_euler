@@ -1,10 +1,4 @@
-import math
-
-def get_number_of_digits(n: int) -> int:
-    return math.floor(math.log(n, 10)) + 1
-
-def get_first_x_digits(n: int, x: int) -> int:
-    return n // (10 ** (get_number_of_digits(n) - x))
+from ..util.digits import get_first_x_digits
 
 list_of_integers = [ \
 37107287533902102798797998220837590246510135740250, \
@@ -108,5 +102,5 @@ list_of_integers = [ \
 20849603980134001723930671666823555245252804609722, \
 53503534226472524250874054075591789781264330331690]
 
-answer = get_first_x_digits(sum(list_of_integers), 10)
-print(answer)
+def get_answer() -> int:
+    return get_first_x_digits(sum(list_of_integers), 10)
