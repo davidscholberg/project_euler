@@ -3,7 +3,7 @@ import math
 class GetDigitsIterator:
     def __init__(self, n: int, reverse: bool = False) -> None:
         self._n = n
-        max_digit_power = math.floor(math.log(self._n, 10))
+        max_digit_power = math.floor(math.log10(self._n))
         if reverse:
             self._digit_power = 0
             self._digit_power_out_of_bounds = lambda x: x > max_digit_power
@@ -27,7 +27,7 @@ def get_first_x_digits(n: int, x: int) -> int:
     return n // (10 ** (get_number_of_digits(n) - x))
 
 def get_number_of_digits(n: int) -> int:
-    return math.floor(math.log(n, 10)) + 1
+    return math.floor(math.log10(n)) + 1
 
 def is_palindromic_number(n: int) -> bool:
     if n < 10:
