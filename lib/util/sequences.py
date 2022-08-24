@@ -1,3 +1,23 @@
+class Collatz:
+    def __init__(self) -> None:
+        self._sequence_length_cache = {}
+
+    def get_number_of_collatz_terms(self, n: int) -> int:
+        if n < 1:
+            return 0
+        if n == 1:
+            return 1
+        if n in self._sequence_length_cache:
+            return self._sequence_length_cache[n]
+        next_n = 0
+        if n % 2 == 0:
+            next_n = n // 2
+        else:
+            next_n = (3 * n) + 1
+        collatz_term_count = self.get_number_of_collatz_terms(next_n) + 1
+        self._sequence_length_cache[n] = collatz_term_count
+        return collatz_term_count
+
 class CollatzIterator:
     def __init__(self, n: int) -> None:
         self._current_value = n
@@ -56,9 +76,3 @@ class TriangleNumberIterator:
         self._previous_value = current_value
         self._current_index += 1
         return current_value
-
-def get_number_of_collatz_terms(n: int) -> int:
-    count = 0
-    for i in CollatzIterator(n):
-        count += 1
-    return count
