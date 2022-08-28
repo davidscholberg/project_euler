@@ -1,5 +1,5 @@
-from ..util.grids import Lattice
+from ..util.grids import Grid, GridRoutes
 
 def get_answer() -> int:
-    lattice = Lattice(20, 20)
-    return lattice.get_number_of_routes((0, 0), (20, 20), (lattice.move_right, lattice.move_down))
+    grid_routes = GridRoutes(21, 21)
+    return grid_routes.get_number_of_routes((0, 0), (20, 20), (Grid.move_right, Grid.move_down))

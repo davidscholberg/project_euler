@@ -91,41 +91,116 @@ class DownDiagonalGridIndicesIterator(GridIndicesIterator):
             self._column += 1
         return tuple(indices)
 
-class Lattice:
-    def __init__(self, rows: int, columns: int) -> None:
+class Grid:
+    def __init__(self, rows: int, columns: int, create_grid: bool = True) -> None:
         self._rows = rows
         self._columns = columns
-        self._lattice = self._create_lattice()
+        self._grid = []
+        if create_grid:
+            self._grid = self._create_grid()
 
-    def move_right(self, coordinates: tuple) -> tuple:
+    @property
+    def rows(self) -> int:
+        return self._rows
+
+    @property
+    def columns(self) -> int:
+        return self._columns
+
+    @staticmethod
+    def move_right(coordinates: tuple) -> tuple:
         return (coordinates[0], coordinates[1] + 1)
 
-    def move_down(self, coordinates: tuple) -> tuple:
+    @staticmethod
+    def move_down(coordinates: tuple) -> tuple:
         return (coordinates[0] + 1, coordinates[1])
+
+    @staticmethod
+    def move_down_right(coordinates: tuple) -> tuple:
+        return (coordinates[0] + 1, coordinates[1] + 1)
+
+    def get(self, coordinates: tuple) -> int:
+        return self._grid[coordinates[0]][coordinates[1]]
+
+    def set(self, coordinates: tuple, n: int) -> None:
+        self._grid[coordinates[0]][coordinates[1]] = n
+
+    @staticmethod
+    def coordinates_are_equal(a: tuple, b: tuple) -> bool:
+        return a[0] == b[0] and a[1] == b[1]
+
+    def coordinates_are_out_of_bounds(self, coordinates: tuple) -> bool:
+        return coordinates[0] < 0 or coordinates[1] < 0 or coordinates[0] >= self._rows or coordinates[1] >= self._columns
+
+    def _create_grid(self) -> list:
+        grid = []
+        for i in range(self._rows):
+            grid.append([-1] * (self._columns))
+        return grid
+
+class GridRoutes:
+    def __init__(self, rows: int, columns: int) -> None:
+        self._route_count_cache = Grid(rows, columns)
 
     # Calling this function multiple times is only valid if to_coordinates and allowed_moves doesn't change.
     def get_number_of_routes(self, from_coordinates: tuple, to_coordinates: tuple, allowed_moves: tuple) -> int:
-        if self._coordinates_are_out_of_bounds(from_coordinates) or self._coordinates_are_out_of_bounds(to_coordinates):
+        if self._route_count_cache.coordinates_are_out_of_bounds(from_coordinates) or self._route_count_cache.coordinates_are_out_of_bounds(to_coordinates):
             return 0
-        if self._lattice[from_coordinates[0]][from_coordinates[1]] != -1:
-            return self._lattice[from_coordinates[0]][from_coordinates[1]]
-        if self._coordinates_are_equal(from_coordinates, to_coordinates):
-            self._lattice[from_coordinates[0]][from_coordinates[1]] = 1
+        cached_route_count = self._route_count_cache.get(from_coordinates)
+        if cached_route_count != -1:
+            return cached_route_count
+        if self._route_count_cache.coordinates_are_equal(from_coordinates, to_coordinates):
+            self._route_count_cache.set(from_coordinates, 1)
             return 1
         route_count = 0
         for move in allowed_moves:
             route_count += self.get_number_of_routes(move(from_coordinates), to_coordinates, allowed_moves)
-        self._lattice[from_coordinates[0]][from_coordinates[1]] = route_count
+        self._route_count_cache.set(from_coordinates, route_count)
         return route_count
 
-    def _create_lattice(self) -> list:
-        lattice = []
-        for i in range(self._rows + 1):
-            lattice.append([-1] * (self._columns + 1))
-        return lattice
+class TriangleGrid(Grid):
+    def __init__(self, rows: int = -1, create_grid: bool = True, from_file: str = "") -> None:
+        super().__init__(rows, -1, create_grid = False)
+        if create_grid:
+            if from_file != "":
+                self._create_grid_from_file(from_file)
+            elif rows != -1:
+                self._create_empty_grid()
 
-    def _coordinates_are_equal(self, a: tuple, b: tuple) -> bool:
-        return a[0] == b[0] and a[1] == b[1]
+    def _create_grid_from_file(self, filename: str) -> None:
+        with open(filename) as f:
+            for line in f:
+                self._grid.append(list(map(int, line.split())))
+        self._rows = len(self._grid)
 
-    def _coordinates_are_out_of_bounds(self, coordinates: tuple) -> bool:
-        return coordinates[0] < 0 or coordinates[1] < 0 or coordinates[0] > self._rows or coordinates[1] > self._columns
+    def _create_empty_grid(self) -> None:
+        for i in range(self._rows):
+            self._grid.append([-1] * (i + 1))
+
+    def coordinates_are_out_of_bounds(self, coordinates: tuple) -> bool:
+        return \
+            coordinates[0] < 0 or \
+            coordinates[0] > self._rows - 1 or \
+            coordinates[1] < 0 or \
+            coordinates[1] > coordinates[0]
+
+class TriangleGridSum:
+    def __init__(self, triangle_grid_filename: str) -> None:
+        self._triangle_grid = TriangleGrid(from_file = triangle_grid_filename)
+        self._max_sum_cache = TriangleGrid(rows = self._triangle_grid.rows)
+
+    # Calling this function multiple times is only valid if allowed_moves doesn't change.
+    def get_max_sum_from_coordinates_to_bounds(self, from_coordinates: tuple, allowed_moves: tuple) -> int:
+        if self._triangle_grid.coordinates_are_out_of_bounds(from_coordinates):
+            return 0
+        cached_max_sum = self._max_sum_cache.get(from_coordinates)
+        if cached_max_sum != -1:
+            return cached_max_sum
+        max_child_sum = 0
+        for move in allowed_moves:
+            child_sum = self.get_max_sum_from_coordinates_to_bounds(move(from_coordinates), allowed_moves)
+            if child_sum > max_child_sum:
+                max_child_sum = child_sum
+        max_sum = max_child_sum + self._triangle_grid.get(from_coordinates)
+        self._max_sum_cache.set(from_coordinates, max_sum)
+        return max_sum
