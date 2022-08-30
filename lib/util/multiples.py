@@ -1,5 +1,8 @@
 import math
 
+def factorial(n: int) -> int:
+    return math.prod(range(1, n + 1))
+
 def get_factors(n: int) -> tuple:
     factors = [1]
     for i in range(2, math.floor(n**0.5) + 1):
