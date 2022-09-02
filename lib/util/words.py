@@ -34,3 +34,21 @@ def get_phrase_for_number(n: int) -> tuple:
             return ("number size not supported",)
         power_of_ten += 1
     return tuple(phrase)
+
+class WordList:
+    def __init__(self, from_file: str) -> None:
+        self._list = []
+        with open(from_file) as f:
+            for line in f:
+                self._list.extend(list(map(lambda s: s.strip("\""), line.split(","))))
+
+    def sort(self, key = None, reverse = False) -> None:
+        self._list.sort(key = key, reverse = reverse)
+
+    def get_sum_of_word_scores(self) -> int:
+        word_score_sum = 0
+        for i, word in enumerate(self._list):
+            word_uppercase = word.upper()
+            word_score = sum(map(lambda c: ord(c) - 64, word_uppercase)) * (i + 1)
+            word_score_sum += word_score
+        return word_score_sum
