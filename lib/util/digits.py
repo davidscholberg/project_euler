@@ -1,4 +1,5 @@
 import math
+from typing import Iterable
 
 class GetDigitsIterator:
     def __init__(self, n: int, reverse: bool = False) -> None:
@@ -25,6 +26,13 @@ class GetDigitsIterator:
 
 def get_first_x_digits(n: int, x: int) -> int:
     return n // (10 ** (get_number_of_digits(n) - x))
+
+def get_number_from_digits(digits: Iterable[int]) -> int:
+    n = 0
+    for i, digit in enumerate(digits):
+        power_of_ten = len(digits) - 1 - i
+        n += digit * (10 ** power_of_ten)
+    return n
 
 def get_number_of_digits(n: int) -> int:
     return math.floor(math.log10(n)) + 1
