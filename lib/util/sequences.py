@@ -41,26 +41,26 @@ class CollatzIterator:
         return self._current_value
 
 class FibonacciIterator:
-    def __init__(self, cap: int = 0) -> None:
-        self._cap = cap
-        self._previous_value = 1
+    def __init__(self, value_cap: int = 0) -> None:
+        self._value_cap = value_cap
+        self._previous_value = 0
         self._current_value = 0
 
     def __iter__(self):
         return self
 
     def __next__(self) -> int:
-        if self._current_value == 0 or self._current_value == 1:
-            self._current_value += 1
-            if self._cap > 0 and self._current_value > self._cap:
-                raise StopIteration
-            return self._current_value
-        new_value = self._current_value + self._previous_value
-        if self._cap > 0 and new_value > self._cap:
+        if self._current_value == 0:
+            self._current_value = 1
+        elif self._current_value == 1 and self._previous_value == 0:
+            self._previous_value = 1
+        else:
+            saved_previous_value = self._previous_value
+            self._previous_value = self._current_value
+            self._current_value += saved_previous_value
+        if self._value_cap != 0 and self._current_value > self._value_cap:
             raise StopIteration
-        self._previous_value = self._current_value
-        self._current_value = new_value
-        return new_value
+        return self._current_value
 
 class PermutationsIterator:
     def __init__(self, ordered_set: tuple, max_permutations: int = -1) -> None:

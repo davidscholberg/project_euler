@@ -2,7 +2,7 @@ from ..util.sequences import FibonacciIterator
 
 def get_sum_of_even_fibonacci_numbers_capped(cap):
     sum_of_even_fibonacci_numbers = 0
-    for term in FibonacciIterator(cap):
+    for term in FibonacciIterator(value_cap = cap):
         if term % 2 == 0:
             sum_of_even_fibonacci_numbers += term
     return sum_of_even_fibonacci_numbers
