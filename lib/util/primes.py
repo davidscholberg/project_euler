@@ -75,6 +75,9 @@ def get_prime_factors(n: int) -> list:
             potential_prime_factor += 1
     return prime_factors
 
+def is_prime(n: int) -> bool:
+    return n > 1 and len(get_prime_factors(n)) == 1
+
 # This function is unused but serves as a reference implementation.
 def sieve_of_eritosthenes(n: int) -> list:
     marked_list = [True] * (n + 1)
