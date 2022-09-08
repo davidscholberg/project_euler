@@ -112,6 +112,14 @@ class Grid:
         return (coordinates[0], coordinates[1] + 1)
 
     @staticmethod
+    def move_left(coordinates: tuple) -> tuple:
+        return (coordinates[0], coordinates[1] - 1)
+
+    @staticmethod
+    def move_up(coordinates: tuple) -> tuple:
+        return (coordinates[0] - 1, coordinates[1])
+
+    @staticmethod
     def move_down(coordinates: tuple) -> tuple:
         return (coordinates[0] + 1, coordinates[1])
 
@@ -131,6 +139,26 @@ class Grid:
 
     def coordinates_are_out_of_bounds(self, coordinates: tuple) -> bool:
         return coordinates[0] < 0 or coordinates[1] < 0 or coordinates[0] >= self._rows or coordinates[1] >= self._columns
+
+    def make_integer_spiral(self) -> None:
+        spiral_counter = 1
+        coordinates = (self._rows // 2, self._columns // 2)
+        if self.coordinates_are_out_of_bounds(coordinates):
+            return
+        self.set(coordinates, spiral_counter)
+        spiral_counter += 1
+        moves = (self.move_right, self.move_down, self.move_left, self.move_up)
+        move_counter = 0
+        while True:
+            for move in moves:
+                if move == self.move_right or move == self.move_left:
+                    move_counter += 1
+                for _ in range(move_counter):
+                    coordinates = move(coordinates)
+                    if self.coordinates_are_out_of_bounds(coordinates):
+                        return
+                    self.set(coordinates, spiral_counter)
+                    spiral_counter += 1
 
     def _create_grid(self) -> list:
         grid = []
