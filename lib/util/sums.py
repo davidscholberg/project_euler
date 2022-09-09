@@ -1,3 +1,6 @@
+from typing import Iterator
+
+from .digits import GetDigitsIterator
 from .multiples import get_proper_divisors
 
 def get_all_abundant_numbers_under_n(n: int) -> tuple:
@@ -51,3 +54,16 @@ def get_sum_of_all_amicable_numbers_under_n(n: int) -> int:
             amicable_number_cache[amicable_number] = True
             running_sum += amicable_number
     return running_sum
+
+def numbers_that_equal_sum_of_nth_power_digits(n: int) -> Iterator[int]:
+    digit_count = 2
+    sum_of_nth_power_digits = lambda number: sum(map(lambda d: d ** n, GetDigitsIterator(number)))
+    while True:
+        minimum_number = 10 ** (digit_count - 1)
+        maximum_number = (10 ** digit_count) - 1
+        if sum_of_nth_power_digits(maximum_number) < minimum_number:
+            break
+        for i in range(minimum_number, maximum_number + 1):
+            if i == sum_of_nth_power_digits(i):
+                yield i
+        digit_count += 1
