@@ -3,6 +3,34 @@ from typing import Iterator
 from .digits import GetDigitsIterator
 from .multiples import get_proper_divisors
 
+class CombinationsOfNumbersThatSumToN:
+    def __init__(self, number_list: tuple, n: int) -> None:
+        self._combinations_iterator = self._get_all_combinations((), number_list, n)
+
+    def __iter__(self):
+        return self
+
+    def __next__(self) -> tuple:
+        return next(self._combinations_iterator)
+
+    @classmethod
+    def _get_all_combinations(cls, picked: tuple, available: tuple, n: int) -> Iterator[tuple]:
+        sum_of_picked = sum(picked)
+        if sum_of_picked > n:
+            return
+        if sum_of_picked == n:
+            yield picked
+            return
+        if len(available) == 0:
+            return
+        first_number = available[0]
+        new_available = tuple(filter(lambda e: e != first_number, available))
+        for i in range(0, ((n - sum_of_picked) // first_number) + 1):
+            new_picked = list(picked)
+            new_picked.extend([first_number] * i)
+            new_picked = tuple(new_picked)
+            yield from cls._get_all_combinations(new_picked, new_available, n)
+
 def get_all_abundant_numbers_under_n(n: int) -> tuple:
     abundant_numbers = []
     for i in range(1, n):
