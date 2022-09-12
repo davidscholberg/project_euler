@@ -44,3 +44,17 @@ def is_palindromic_number(n: int) -> bool:
     for digit in GetDigitsIterator(n, reverse = True):
         reverse_n = (reverse_n * 10) + digit
     return reverse_n == n
+
+def is_pandigital(numbers: tuple):
+    digit_count = sum(map(get_number_of_digits, numbers))
+    if digit_count > 9:
+        return False
+    digit_exists_map = [False] * digit_count
+    for number in numbers:
+        for digit in GetDigitsIterator(number):
+            if digit == 0 or digit > digit_count:
+                return False
+            if digit_exists_map[digit - 1]:
+                return False
+            digit_exists_map[digit - 1] = True
+    return True
