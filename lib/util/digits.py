@@ -37,6 +37,9 @@ def get_number_from_digits(digits: Iterable[int]) -> int:
 def get_number_of_digits(n: int) -> int:
     return math.floor(math.log10(n)) + 1
 
+def has_digit(n: int, digit: int) -> bool:
+    return digit in list(GetDigitsIterator(n))
+
 def is_palindromic_number(n: int) -> bool:
     if n < 10:
         return True
@@ -45,7 +48,7 @@ def is_palindromic_number(n: int) -> bool:
         reverse_n = (reverse_n * 10) + digit
     return reverse_n == n
 
-def is_pandigital(numbers: tuple):
+def is_pandigital(numbers: tuple) -> bool:
     digit_count = sum(map(get_number_of_digits, numbers))
     if digit_count > 9:
         return False
@@ -58,3 +61,8 @@ def is_pandigital(numbers: tuple):
                 return False
             digit_exists_map[digit - 1] = True
     return True
+
+def remove_digit(n: int, digit: int) -> int:
+    digits = list(GetDigitsIterator(n))
+    digits.remove(digit)
+    return get_number_from_digits(digits)
