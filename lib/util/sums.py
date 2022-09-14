@@ -1,7 +1,7 @@
 from typing import Iterator
 
 from .digits import GetDigitsIterator
-from .multiples import get_proper_divisors
+from .multiples import factorial, get_proper_divisors
 
 class CombinationsOfNumbersThatSumToN:
     def __init__(self, number_list: tuple, n: int) -> None:
@@ -82,6 +82,26 @@ def get_sum_of_all_amicable_numbers_under_n(n: int) -> int:
             amicable_number_cache[amicable_number] = True
             running_sum += amicable_number
     return running_sum
+
+def numbers_that_equal_sum_of_digit_factorials() -> Iterator[int]:
+    digit_count = 2
+    factorial_cache = {}
+    def factorial_cache_checker(n: int) -> int:
+        if n in factorial_cache:
+            return factorial_cache[n]
+        result = factorial(n)
+        factorial_cache[n] = result
+        return result
+    sum_of_digit_factorials = lambda number: sum(map(lambda d: factorial_cache_checker(d), GetDigitsIterator(number)))
+    while True:
+        minimum_number = 10 ** (digit_count - 1)
+        maximum_number = (10 ** digit_count) - 1
+        if sum_of_digit_factorials(maximum_number) < minimum_number:
+            break
+        for i in range(minimum_number, maximum_number + 1):
+            if i == sum_of_digit_factorials(i):
+                yield i
+        digit_count += 1
 
 def numbers_that_equal_sum_of_nth_power_digits(n: int) -> Iterator[int]:
     digit_count = 2
