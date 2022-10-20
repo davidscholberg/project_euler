@@ -1,0 +1,3 @@
+#!/usr/bin/env sh
+
+echo -e '#!/usr/bin/env sh\n\n./test' > .git/hooks/pre-commit && chmod 755 .git/hooks/pre-commit
