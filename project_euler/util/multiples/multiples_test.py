@@ -1,6 +1,6 @@
 from unittest import TestCase
 
-from project_euler.util.multiples.multiples import multiples
+from project_euler.util.multiples.multiples import multiples, smallest_number_divisible_by
 
 class TestMultiples(TestCase):
     def test_multiples(self):
@@ -12,3 +12,6 @@ class TestMultiples(TestCase):
                 self.assertEqual(multiple - previous_multiple, i)
                 self.assertEqual(multiple % i, 0)
                 previous_multiple = multiple
+
+    def test_smallest_number_divisible_by(self):
+        self.assertEqual(2520, smallest_number_divisible_by(range(2, 11)))
