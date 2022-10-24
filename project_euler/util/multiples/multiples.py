@@ -10,7 +10,7 @@ def multiples(n: int, minimum = None) -> Iterator[int]:
 
 def smallest_number_divisible_by(numbers: Iterable[int]) -> int:
     sorted_numbers = sorted(numbers, reverse=True)
-    largest_number = sorted_numbers[0]
+    largest_number = sorted_numbers.pop(0)
     for multiple in multiples(largest_number):
         found = True
         for number in sorted_numbers:
