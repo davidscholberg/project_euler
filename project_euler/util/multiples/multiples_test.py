@@ -12,6 +12,9 @@ class TestMultiples(TestCase):
                 self.assertEqual(multiple - previous_multiple, i)
                 self.assertEqual(multiple % i, 0)
                 previous_multiple = multiple
+        self.assertEqual(2, next(multiples(2, minimum=1)))
+        self.assertEqual(2, next(multiples(2, minimum=2)))
+        self.assertEqual(4, next(multiples(2, minimum=3)))
 
     def test_smallest_number_divisible_by(self):
         self.assertEqual(2520, smallest_number_divisible_by(range(2, 11)))

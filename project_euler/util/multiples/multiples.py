@@ -1,7 +1,9 @@
 from typing import Iterable, Iterator
 
-def multiples(n: int) -> Iterator[int]:
-    current_multiple = n
+def multiples(n: int, minimum = None) -> Iterator[int]:
+    if minimum is None:
+        minimum = n
+    current_multiple = minimum + (minimum % n)
     while True:
         yield current_multiple
         current_multiple += n
