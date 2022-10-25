@@ -6,6 +6,6 @@ def prime_factors(n: int) -> Iterator[int]:
     while n > 1:
         if n % potential_prime_factor == 0:
             yield potential_prime_factor
-            n /= potential_prime_factor
+            n //= potential_prime_factor
         else:
             potential_prime_factor += 1
