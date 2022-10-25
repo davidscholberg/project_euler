@@ -1,10 +1,10 @@
 import pathlib
 
-def get_package_root_directory() -> str:
+def package_root_directory() -> str:
     return pathlib.Path(__file__).parent
 
-def get_data_root_directory() -> str:
-    return get_package_root_directory() / 'data'
+def data_root_directory() -> str:
+    return package_root_directory() / 'data'
 
-def get_data_file_path(filename: str) -> str:
-    return get_data_root_directory() / filename
+def data_file_path(filename: str) -> str:
+    return data_root_directory() / filename
