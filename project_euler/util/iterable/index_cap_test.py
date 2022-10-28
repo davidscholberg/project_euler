@@ -7,3 +7,6 @@ class TestIndexCap(TestCase):
         self.assertEqual([1, 2, 3, 4], list(index_cap(range(1, 6), 3)))
         self.assertEqual([1, 2, 3, 4, 5], list(index_cap(range(1, 6), 4)))
         self.assertEqual([1, 2, 3, 4, 5], list(index_cap(range(1, 6), 5)))
+        self.assertEqual([1, 2, 3, 4], list(index_cap(range(1, 6), 4, start=1)))
+        self.assertEqual([1, 2, 3, 4, 5], list(index_cap(range(1, 6), 5, start=1)))
+        self.assertEqual([1, 2, 3, 4, 5], list(index_cap(range(1, 6), 6, start=1)))
