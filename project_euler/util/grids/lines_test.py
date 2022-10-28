@@ -2,9 +2,9 @@ from unittest import TestCase
 
 from project_euler.util.grids.coordinates import move_down, move_right
 from project_euler.util.grids.grid import Grid
-from project_euler.util.grids.iterators import line, lines, lines_down_diagonal, lines_horizontal, lines_up_diagonal, lines_vertical
+from project_euler.util.grids.lines import line, lines, lines_down_diagonal, lines_horizontal, lines_up_diagonal, lines_vertical
 
-class TestIterators(TestCase):
+class TestLines(TestCase):
     def test_line(self):
         grid_data = (
             "02 04 21\n"

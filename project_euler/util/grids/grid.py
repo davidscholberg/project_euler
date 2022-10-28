@@ -1,12 +1,14 @@
 from typing import Callable, Iterator
 
 class Grid:
-    def __init__(self, grid_data = None, rows = None, columns = None, default_value = 0) -> None:
+    def __init__(self, grid_data = None, rows = None, columns = None, from_grid = None, default_value = 0) -> None:
         self._grid = []
         if grid_data is not None:
             self._create_grid_from_data(grid_data)
         elif rows is not None:
             self._create_grid_from_dimensions(rows, columns, default_value)
+        elif from_grid is not None:
+            self._create_grid_from_grid(from_grid, default_value)
 
     def _create_grid_from_data(self, grid_data: str) -> None:
         for row in grid_data.split('\n'):
@@ -19,6 +21,10 @@ class Grid:
             columns = rows
         for _ in range(0, rows):
             self._grid.append([default_value] * columns)
+
+    def _create_grid_from_grid(self, grid, default_value) -> None:
+        for row in grid._grid:
+            self._grid.append([default_value] * len(row))
 
     def bottom_left(self) -> tuple[int, int]:
         return (len(self._grid) - 1, 0)

@@ -3,7 +3,7 @@ from math import prod
 
 from project_euler.paths import data_file_path
 from project_euler.util.grids.grid import Grid
-from project_euler.util.grids.iterators import lines_down_diagonal, lines_horizontal, lines_up_diagonal, lines_vertical
+from project_euler.util.grids.lines import lines_down_diagonal, lines_horizontal, lines_up_diagonal, lines_vertical
 from project_euler.util.iterable.sliding_window import sliding_window
 
 def get_answer() -> int:
