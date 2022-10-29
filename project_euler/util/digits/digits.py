@@ -2,6 +2,9 @@ import math
 from typing import Iterable, Iterator
 
 def digits(n: int, reverse: bool = False) -> Iterator[int]:
+    if n < 10:
+        yield n
+        return
     max_digit_power = math.floor(math.log10(n))
     digit_power = None
     digit_power_out_of_bounds = None
