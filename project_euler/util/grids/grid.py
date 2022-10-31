@@ -42,6 +42,18 @@ class Grid:
             coordinate[1] >= 0 and coordinate[1] < len(self._grid[coordinate[0]])
         )
 
+    def is_on_bottom_edge(self, coordinate: tuple[int, int]) -> bool:
+        return self.in_bounds(coordinate) and coordinate[0] == len(self._grid) - 1
+
+    def is_on_left_edge(self, coordinate: tuple[int, int]) -> bool:
+        return self.in_bounds(coordinate) and coordinate[1] == 0
+
+    def is_on_right_edge(self, coordinate: tuple[int, int]) -> bool:
+        return self.in_bounds(coordinate) and coordinate[1] == len(self._grid[coordinate[0]]) - 1
+
+    def is_on_top_edge(self, coordinate: tuple[int, int]) -> bool:
+        return self.in_bounds(coordinate) and coordinate[0] == 0
+
     def set(self, coordinate: tuple[int, int], value):
         self._grid[coordinate[0]][coordinate[1]] = value
 
