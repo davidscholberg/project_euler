@@ -73,52 +73,52 @@ class TestSplitNumber(TestCase):
             [
                 (4,)
             ],
-            list(split_number(4, ways=1, ascending=True))
+            list(split_number(4, ways=1, distinct=True))
         )
         self.assertEqual(
             [
                 (1, 3)
             ],
-            list(split_number(4, ways=2, ascending=True))
+            list(split_number(4, ways=2, distinct=True))
         )
         self.assertEqual(
             [],
-            list(split_number(4, ways=3, ascending=True))
+            list(split_number(4, ways=3, distinct=True))
         )
         self.assertEqual(
             [],
-            list(split_number(4, ways=4, ascending=True))
+            list(split_number(4, ways=4, distinct=True))
         )
         self.assertEqual(
             [],
-            list(split_number(4, ways=5, ascending=True))
+            list(split_number(4, ways=5, distinct=True))
         )
         self.assertEqual(
             [
                 (5,)
             ],
-            list(split_number(5, ways=1, ascending=True))
+            list(split_number(5, ways=1, distinct=True))
         )
         self.assertEqual(
             [
                 (1, 4),
                 (2, 3)
             ],
-            list(split_number(5, ways=2, ascending=True))
+            list(split_number(5, ways=2, distinct=True))
         )
         self.assertEqual(
             [],
-            list(split_number(5, ways=3, ascending=True))
+            list(split_number(5, ways=3, distinct=True))
         )
         self.assertEqual(
             [],
-            list(split_number(5, ways=4, ascending=True))
+            list(split_number(5, ways=4, distinct=True))
         )
         self.assertEqual(
             [],
-            list(split_number(5, ways=5, ascending=True))
+            list(split_number(5, ways=5, distinct=True))
         )
         self.assertEqual(
             [],
-            list(split_number(5, ways=6, ascending=True))
+            list(split_number(5, ways=6, distinct=True))
         )
