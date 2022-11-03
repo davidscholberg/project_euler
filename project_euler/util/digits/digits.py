@@ -1,6 +1,11 @@
 import math
 from typing import Iterable, Iterator
 
+def digit_count(n: int) -> int:
+    if n == 0:
+        return 1
+    return math.floor(math.log10(n)) + 1
+
 def digits(n: int, reverse: bool = False) -> Iterator[int]:
     if n < 10:
         yield n

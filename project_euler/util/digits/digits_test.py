@@ -1,8 +1,28 @@
 from unittest import TestCase
 
-from project_euler.util.digits.digits import digits, number_from_digits
+from project_euler.util.digits.digits import digit_count, digits, number_from_digits
 
 class TestDigits(TestCase):
+    def test_digit_count(self):
+        self.assertEqual(1, digit_count(0))
+        self.assertEqual(1, digit_count(1))
+        self.assertEqual(1, digit_count(2))
+        self.assertEqual(1, digit_count(8))
+        self.assertEqual(1, digit_count(9))
+        self.assertEqual(2, digit_count(10))
+        self.assertEqual(2, digit_count(11))
+        self.assertEqual(2, digit_count(12))
+        self.assertEqual(2, digit_count(98))
+        self.assertEqual(2, digit_count(99))
+        self.assertEqual(3, digit_count(100))
+        self.assertEqual(3, digit_count(101))
+        self.assertEqual(3, digit_count(102))
+        self.assertEqual(3, digit_count(998))
+        self.assertEqual(3, digit_count(999))
+        self.assertEqual(4, digit_count(1000))
+        self.assertEqual(4, digit_count(1001))
+        self.assertEqual(4, digit_count(1002))
+
     def test_digits(self):
         self.assertEqual([0], list(digits(0)))
         self.assertEqual([1], list(digits(1)))
