@@ -1,0 +1,36 @@
+from unittest import TestCase
+
+from project_euler.util.fractions.decimal_number import DecimalNumber
+
+class TestDecimalNumber(TestCase):
+    def test_decimal_number(self):
+        d1 = DecimalNumber()
+        d1.add_digit(3)
+        d1.set_decimal_point()
+        d1.add_digit(1)
+        d1.add_digit(4)
+        self.assertEqual((3, 1, 4), d1.digits)
+        self.assertEqual((), d1.repeating_digits)
+        self.assertTrue(d1.decimal_point_is_set())
+        self.assertEqual('3.14', str(d1))
+        d2 = DecimalNumber()
+        d2.add_digit(3)
+        d2.set_decimal_point()
+        d2.add_digit(1)
+        d2.add_digit(4)
+        self.assertEqual(d1, d2)
+        d2 = DecimalNumber()
+        d2.add_digit(4)
+        d2.add_digit(2)
+        self.assertNotEqual(d1, d2)
+        self.assertFalse(d2.decimal_point_is_set())
+        self.assertEqual('42', str(d2))
+        d2 = DecimalNumber()
+        d2.add_digit(0)
+        d2.set_decimal_point()
+        d2.add_digit(6)
+        d2.add_digit(3)
+        d2.add_digit(1)
+        d2.add_digit(4)
+        d2.set_repeating_digit_indexes(2, 4)
+        self.assertEqual('0.63(14)', str(d2))
