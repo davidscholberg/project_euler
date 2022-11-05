@@ -1,3 +1,4 @@
+from itertools import starmap
 from typing import Iterable, Iterator
 
 def word_score(position: int, word: str) -> int:
@@ -7,7 +8,7 @@ def word_score(position: int, word: str) -> int:
     ))
 
 def word_scores(words: Iterable[str]) -> Iterator[int]:
-    yield from map(
-        lambda t: word_score(t[0], t[1]),
+    yield from starmap(
+        word_score,
         enumerate(sorted(words), start=1)
     )
