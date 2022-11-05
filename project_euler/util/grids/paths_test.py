@@ -2,7 +2,6 @@ from unittest import TestCase
 
 from project_euler.util.grids.coordinates import move_down, move_down_right, move_right
 from project_euler.util.grids.grid import Grid
-from project_euler.util.iterable.count import count
 from project_euler.util.grids.paths import max_path_sum, path_count
 
 class TestPaths(TestCase):
