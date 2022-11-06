@@ -44,3 +44,8 @@ class TestGrid(TestCase):
         self.assertEqual(0, from_grid.get(from_grid.bottom_right()))
         self.assertTrue(from_grid.in_bounds((2, 2)))
         self.assertFalse(from_grid.in_bounds((3, 3)))
+        grid1 = Grid(grid_data=grid_data)
+        grid2 = Grid(grid_data=grid_data)
+        self.assertEqual(grid1, grid2)
+        grid2 = Grid(rows=3, default_value=10)
+        self.assertNotEqual(grid1, grid2)

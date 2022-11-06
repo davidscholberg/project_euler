@@ -26,6 +26,14 @@ class Grid:
         for row in grid._grid:
             self._grid.append([default_value] * len(row))
 
+    def __eq__(self, __o: object) -> bool:
+        if len(self._grid) != len(__o._grid):
+            return False
+        for row1, row2 in zip(self._grid, __o._grid):
+            if row1 != row2:
+                return False
+        return True
+
     def bottom_left(self) -> tuple[int, int]:
         return (len(self._grid) - 1, 0)
 
