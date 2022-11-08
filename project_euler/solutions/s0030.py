@@ -1,4 +1,4 @@
-from project_euler.util.sums.numbers_equal_to_sum_of_powers_of_digits import numbers_equal_to_sum_of_powers_of_digits
+from project_euler.util.sums.digit_power_sum_numbers import digit_power_sum_numbers
 
 def get_answer() -> int:
-    return sum(numbers_equal_to_sum_of_powers_of_digits(5))
+    return sum(digit_power_sum_numbers(5))

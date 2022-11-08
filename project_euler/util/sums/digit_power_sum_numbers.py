@@ -4,7 +4,8 @@ from typing import Iterator
 from project_euler.util.digits.n_digit_number import max_n_digit_number, min_n_digit_number
 from project_euler.util.digits.powers_of_digits import powers_of_digits
 
-def numbers_equal_to_sum_of_powers_of_digits(power: int) -> Iterator[int]:
+def digit_power_sum_numbers(power: int) -> Iterator[int]:
+    """Return all numbers equal to the sum of their digits each raised to the given power."""
     for digit_count in count(start=2):
         minimum = min_n_digit_number(digit_count)
         maximum = max_n_digit_number(digit_count)

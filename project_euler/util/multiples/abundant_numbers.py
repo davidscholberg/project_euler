@@ -8,7 +8,8 @@ def abundant_numbers(minimum: int, maximum:int) -> Iterator[int]:
         if sum(factors(n, proper=True)) > n:
             yield n
 
-def numbers_not_sum_of_two_abundant_numbers(maximum:int) -> Iterator[int]:
+def non_abundant_sum_numbers(maximum:int) -> Iterator[int]:
+    """Return all numbers not equal to the sum of two abundant numbers, capped by given maximum."""
     abundant_number_pair_sums = [False] * (maximum + 1)
     abundant_numbers_tuple = tuple(abundant_numbers(1, maximum))
     for i, j in integer_pairs(0, len(abundant_numbers_tuple) - 1, distinct=False):
