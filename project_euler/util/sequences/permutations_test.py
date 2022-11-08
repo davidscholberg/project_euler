@@ -22,3 +22,14 @@ class TestPermutations(TestCase):
             ),
             tuple(map(tuple, permutations((0, 1, 2))))
         )
+        self.assertEqual(
+            (
+                (0, 1),
+                (0, 2),
+                (1, 0),
+                (1, 2),
+                (2, 0),
+                (2, 1)
+            ),
+            tuple(map(tuple, permutations((0, 1, 2), choose=2)))
+        )
