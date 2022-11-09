@@ -29,7 +29,7 @@ def circular_primes(limit: int) -> Iterator[int]:
         if not circular:
             add_rotations_to_cache(rotations_tuple, False)
             continue
-        for rotation in rotations(digits_tuple):
+        for rotation in rotations_tuple:
             if not is_prime(number_from_digits(rotation)):
                 circular = False
                 break
