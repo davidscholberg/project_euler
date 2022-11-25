@@ -19,3 +19,4 @@ def smallest_number_divisible_by(numbers: Iterable[int]) -> int:
                 break
         if found:
             return multiple
+    return 0
