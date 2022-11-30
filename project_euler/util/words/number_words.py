@@ -51,7 +51,7 @@ power_suffix = (
 def number_words(n: int) -> str:
     words = deque()
     ones_digit = None
-    for power, digit in enumerate(digits(n, reverse=True)):
+    for power, digit in enumerate(reversed(digits(n))):
         if power == 0:
             words.appendleft(ones[digit])
             ones_digit = digit

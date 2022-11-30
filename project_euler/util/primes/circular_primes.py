@@ -19,7 +19,7 @@ def circular_primes(limit: int) -> Iterator[int]:
             if cache[prime]:
                 yield prime
             continue
-        digits_tuple = tuple(digits(prime))
+        digits_tuple = digits(prime)
         rotations_tuple = tuple(rotations(digits_tuple))
         circular = True
         for digit in digits_tuple:

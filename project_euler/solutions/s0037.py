@@ -7,7 +7,7 @@ def get_answer() -> int:
     for prime in sieve_of_eratosthenes(739397):
         if prime < 10:
             continue
-        digits_tuple = tuple(digits(prime))
+        digits_tuple = digits(prime)
         truncatable = True
         for i, digit in enumerate(digits_tuple):
             if (digit % 2 == 0 and (digit != 2 or i != 0)) or (digit == 5 and i != 0):

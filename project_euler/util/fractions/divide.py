@@ -3,7 +3,7 @@ from project_euler.util.fractions.decimal_number import DecimalNumber
 
 def divide(dividend: int, divisor: int) -> DecimalNumber:
     decimal_dividends = []
-    dividend_digits = digits(dividend)
+    dividend_digits = iter(digits(dividend))
     current_dividend = next(dividend_digits)
     result = DecimalNumber()
     done = False

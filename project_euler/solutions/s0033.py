@@ -11,8 +11,8 @@ def get_answer() -> int:
     for a, b in integer_pairs(11, 99, distinct=True):
         if a % 10 == 0 or b % 10 == 0:
             continue
-        a_digits = tuple(digits(a))
-        b_digits = tuple(digits(b))
+        a_digits = digits(a)
+        b_digits = digits(b)
         for i in range(0, 2):
             digit_to_cancel = a_digits[i]
             try:
