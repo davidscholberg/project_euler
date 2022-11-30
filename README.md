@@ -8,6 +8,12 @@ These are my solutions to the [Project Euler][project-euler-site] problem set. T
 
 ### Development Setup
 
+* Install python's development headers (required for compiling Cython). The exact command will vary per linux distribution. For Fedora, the command would be:
+
+```bash
+sudo dnf install python3-devel
+```
+
 * Get project source.
 
 ```bash
