@@ -1,14 +1,14 @@
 from functools import reduce
+from itertools import combinations
 
 from project_euler.util.digits.digits import digits
 from project_euler.util.fractions.divide import divide
 from project_euler.util.fractions.multiply import multiply_fractions
 from project_euler.util.fractions.reduce import reduce_fraction
-from project_euler.util.iterable.integer_sets import integer_pairs
 
 def get_answer() -> int:
     digit_cancelling_fractions = []
-    for a, b in integer_pairs(11, 99, distinct=True):
+    for a, b in combinations(range(11, 100), 2):
         if a % 10 == 0 or b % 10 == 0:
             continue
         a_digits = digits(a)
