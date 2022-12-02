@@ -1,6 +1,10 @@
 import math
 from typing import Iterable, Iterator
 
+def append_digit(n: int, digit: int) -> int:
+    """Append digit to the right of n."""
+    return (n * 10) + digit
+
 def digit_count(n: int) -> int:
     if n == 0:
         return 1

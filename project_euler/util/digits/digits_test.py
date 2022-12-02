@@ -1,8 +1,12 @@
 from unittest import TestCase
 
-from project_euler.util.digits.digits import digit_count, digits, number_from_digits
+from project_euler.util.digits.digits import append_digit, digit_count, digits, number_from_digits
 
 class TestDigits(TestCase):
+    def test_append_digit(self):
+        self.assertEqual(10, append_digit(1, 0))
+        self.assertEqual(12345, append_digit(1234, 5))
+
     def test_digit_count(self):
         self.assertEqual(1, digit_count(0))
         self.assertEqual(1, digit_count(1))
