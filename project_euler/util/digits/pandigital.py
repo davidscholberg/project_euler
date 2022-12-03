@@ -16,6 +16,8 @@ def is_pandigital(n: int | Iterable[int]) -> bool:
     for digit in digit_tuple:
         if digit == 0:
             return False
+        if digit >= len(digit_map):
+            return False
         if digit_map[digit]:
             return False
         digit_map[digit] = True

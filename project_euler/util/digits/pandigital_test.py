@@ -9,6 +9,7 @@ class TestPandigital(TestCase):
         self.assertTrue(is_pandigital(132))
         self.assertTrue(is_pandigital(3412))
         self.assertFalse(is_pandigital(10))
+        self.assertFalse(is_pandigital(24))
         self.assertFalse(is_pandigital(34321))
         self.assertTrue(is_pandigital((1,)))
         self.assertTrue(is_pandigital((2, 1)))
