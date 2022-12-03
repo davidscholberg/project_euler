@@ -1,3 +1,4 @@
+from libcpp.vector cimport vector
 from typing import Iterable, Iterator
 
 def multiples(n: int, minimum = None) -> Iterator[int]:
@@ -9,9 +10,13 @@ def multiples(n: int, minimum = None) -> Iterator[int]:
         current_multiple += n
 
 def smallest_number_divisible_by(numbers: Iterable[int]) -> int:
-    sorted_numbers = sorted(numbers, reverse=True)
-    largest_number = sorted_numbers.pop(0)
-    for multiple in multiples(largest_number):
+    sorted_numbers_list = sorted(numbers, reverse=True)
+    cdef int largest_number = sorted_numbers_list.pop(0)
+    cdef vector[int] sorted_numbers = sorted_numbers_list
+    cdef int multiple = 0
+    cdef int number = 0
+    while True:
+        multiple += largest_number
         found = True
         for number in sorted_numbers:
             if multiple % number != 0:

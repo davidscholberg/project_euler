@@ -5,6 +5,7 @@ setup(
         Extension(
             name='project_euler.util.multiples.multiples',
             sources=['project_euler/util/multiples/multiples.pyx'],
+            language='c++',
         ),
         Extension(
             name='project_euler.util.sums.pythagorean_triplet',

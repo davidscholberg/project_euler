@@ -3,3 +3,4 @@ __pycache__
 project_euler.egg-info/
 *.so
 *.c
+*.cpp
