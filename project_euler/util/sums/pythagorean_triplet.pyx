@@ -1,7 +1,7 @@
 def pythagorean_triplets(int n) -> tuple[tuple[int, int, int]]:
     """All pythagorean triplets whose sum equals n."""
     triplets = []
-    cdef int a, b, c = 0
+    cdef int a, b, c
     for a in range(1, (n // 3) + 1):
         for b in range(a + 1, (n // 2) + 1):
             c = n - a - b
