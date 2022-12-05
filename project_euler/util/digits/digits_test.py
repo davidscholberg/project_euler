@@ -1,6 +1,6 @@
 from unittest import TestCase
 
-from project_euler.util.digits.digits import append_digit, digit_count, digits, number_from_digits
+from project_euler.util.digits.digits import append_digit, digit_count, digits, digits_c_wrapper, number_from_digits
 
 class TestDigits(TestCase):
     def test_append_digit(self):
@@ -35,6 +35,15 @@ class TestDigits(TestCase):
         self.assertEqual((2, 0), digits(20))
         self.assertEqual((3, 8), digits(38))
         self.assertEqual((9, 4, 3, 0, 5, 9, 3, 9, 8), digits(943059398))
+
+    def test_digits_c(self):
+        self.assertEqual((0,), digits_c_wrapper(0))
+        self.assertEqual((1,), digits_c_wrapper(1))
+        self.assertEqual((9,), digits_c_wrapper(9))
+        self.assertEqual((1, 0), digits_c_wrapper(10))
+        self.assertEqual((2, 0), digits_c_wrapper(20))
+        self.assertEqual((3, 8), digits_c_wrapper(38))
+        self.assertEqual((9, 4, 3, 0, 5, 9, 3, 9, 8), digits_c_wrapper(943059398))
 
     def test_number_from_digits(self):
         self.assertEqual(0, number_from_digits([0]))
