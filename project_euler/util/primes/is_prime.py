@@ -1,4 +1,3 @@
-from project_euler.util.iterable.iter_len import iter_len
 from project_euler.util.multiples.factors import factors
 
 def is_prime(n: int) -> bool:
@@ -8,4 +7,4 @@ def is_prime(n: int) -> bool:
         return True
     if n % 2 == 0:
         return False
-    return iter_len(factors(n, proper=True)) == 1
+    return len(factors(n, proper=True)) == 1

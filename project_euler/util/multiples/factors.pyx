@@ -1,17 +1,21 @@
 from itertools import chain
+from libcpp.list cimport list
 import math
 from typing import Iterator
 
-def factors(n: int, proper: bool = False) -> Iterator[int]:
-    yield 1
+def factors(int n, proper: bool = False) -> tuple[int]:
+    cdef list[int] factors_list
+    factors_list.push_back(1)
+    cdef int i, partner
     for i in range(2, math.floor(n**0.5) + 1):
         if n % i == 0:
-            yield i
+            factors_list.push_back(i)
             partner = n // i
             if partner != i:
-                yield partner
+                factors_list.push_back(partner)
     if not proper and n > 1:
-        yield n
+        factors_list.push_back(n)
+    return tuple(factors_list)
 
 def amicable_numbers(minimum: int, maximum:int) -> Iterator[int]:
     yield from chain.from_iterable(amicable_pairs(minimum, maximum))

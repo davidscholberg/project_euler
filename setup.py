@@ -8,6 +8,11 @@ setup(
             language='c++',
         ),
         Extension(
+            name='project_euler.util.multiples.factors',
+            sources=['project_euler/util/multiples/factors.pyx'],
+            language='c++',
+        ),
+        Extension(
             name='project_euler.util.multiples.multiples',
             sources=['project_euler/util/multiples/multiples.pyx'],
             language='c++',
