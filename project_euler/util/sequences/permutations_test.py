@@ -9,7 +9,7 @@ class TestPermutations(TestCase):
                 (0, 1),
                 (1, 0)
             ),
-            tuple(map(tuple, permutations((0, 1))))
+            tuple(permutations(2))
         )
         self.assertEqual(
             (
@@ -20,16 +20,16 @@ class TestPermutations(TestCase):
                 (2, 0, 1),
                 (2, 1, 0)
             ),
-            tuple(map(tuple, permutations((0, 1, 2))))
+            tuple(permutations(3))
         )
         self.assertEqual(
             (
                 (0, 1),
-                (0, 2),
                 (1, 0),
-                (1, 2),
+                (0, 2),
                 (2, 0),
+                (1, 2),
                 (2, 1)
             ),
-            tuple(map(tuple, permutations((0, 1, 2), choose=2)))
+            tuple(permutations(3, choose=2))
         )

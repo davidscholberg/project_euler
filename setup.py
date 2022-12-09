@@ -18,6 +18,11 @@ setup(
             language='c++',
         ),
         Extension(
+            name='project_euler.util.sequences.permutations',
+            sources=['project_euler/util/sequences/permutations.pyx'],
+            language='c++',
+        ),
+        Extension(
             name='project_euler.util.sums.digit_factorial_sum',
             sources=['project_euler/util/sums/digit_factorial_sum.pyx'],
             language='c++',

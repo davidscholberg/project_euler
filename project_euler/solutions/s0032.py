@@ -27,7 +27,8 @@ def get_answer() -> int:
         splitters = tuple(operand_splitters(digit_count))
         if len(splitters) == 0:
             continue
-        for permutation in map(tuple, permutations(range(1, 10), choose=digit_count)):
+        candidate_digits = map(lambda t: tuple(map(lambda n: n + 1, t)), permutations(9, choose=digit_count))
+        for permutation in candidate_digits:
             for splitter in splitters:
                 a_digits = permutation[:splitter]
                 b_digits = permutation[splitter:]
