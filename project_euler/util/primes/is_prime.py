@@ -1,10 +1,14 @@
-from project_euler.util.multiples.factors import factors
+import math
 
+# https://en.wikipedia.org/wiki/Primality_test#Simple_methods
 def is_prime(n: int) -> bool:
     if n < 2:
         return False
-    if n == 2:
+    if n <= 3:
         return True
-    if n % 2 == 0:
+    if n % 2 == 0 or n % 3 == 0:
         return False
-    return len(factors(n, proper=True)) == 1
+    for i in range(5, math.floor(n ** 0.5) + 1, 6):
+        if n % i == 0 or n % (i + 2) == 0:
+            return False
+    return True
