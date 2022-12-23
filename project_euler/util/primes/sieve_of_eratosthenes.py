@@ -8,7 +8,7 @@ def sieve_of_eratosthenes(limit: int) -> Iterator[int]:
     current_prime = 2
     while current_prime <= limit:
         yield current_prime
-        for multiple in value_cap(multiples(current_prime, minimum=current_prime * 2), limit):
+        for multiple in value_cap(limit, multiples(current_prime, minimum=current_prime * 2)):
             composites[multiple] = True
         current_prime += 1
         while composites[current_prime]:
