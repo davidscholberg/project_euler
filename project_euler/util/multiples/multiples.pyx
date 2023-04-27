@@ -4,7 +4,10 @@ from typing import Iterable, Iterator
 def multiples(n: int, minimum = None) -> Iterator[int]:
     if minimum is None:
         minimum = n
-    current_multiple = minimum + (minimum % n)
+    current_multiple = minimum
+    minimum_offset = n - (minimum % n)
+    if minimum_offset < n:
+        current_multiple += minimum_offset
     while True:
         yield current_multiple
         current_multiple += n
