@@ -18,6 +18,11 @@ setup(
             language='c++',
         ),
         Extension(
+            name='project_euler.util.primes.prime_factors',
+            sources=['project_euler/util/primes/prime_factors.pyx'],
+            language='c++',
+        ),
+        Extension(
             name='project_euler.util.sequences.permutations',
             sources=['project_euler/util/sequences/permutations.pyx'],
             language='c++',
