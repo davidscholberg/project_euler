@@ -2,11 +2,11 @@ from itertools import chain
 
 from project_euler.util.digits.digits import digits, number_from_digits
 from project_euler.util.iterable.value_cap import value_cap
-from project_euler.util.primes.sieve_of_eratosthenes import RollingSieve
+from project_euler.util.primes.sieve_of_eratosthenes import sieve_of_eratosthenes
 from project_euler.util.sequences.permutations import permutations
 
 def get_answer() -> int:
-    four_digit_primes = filter(lambda p: p > 999, value_cap(9999, RollingSieve()))
+    four_digit_primes = filter(lambda p: p > 999, sieve_of_eratosthenes(9999))
     four_digit_prime_set = set(four_digit_primes)
     four_element_permutations = tuple(permutations(4))
     seen_primes = set(get_permuted_primes(1487, four_element_permutations, four_digit_prime_set))
