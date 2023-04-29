@@ -1,7 +1,6 @@
 from itertools import chain
 
 from project_euler.util.digits.digits import digits, number_from_digits
-from project_euler.util.iterable.value_cap import value_cap
 from project_euler.util.primes.sieve_of_eratosthenes import sieve_of_eratosthenes
 from project_euler.util.sequences.permutations import permutations
 
