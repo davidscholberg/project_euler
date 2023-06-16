@@ -19,3 +19,15 @@ def set_spiral(grid: Grid, values: Iterable[Any]) -> None:
             break
         grid.set(current, value)
         current = move(current)
+
+def spiral_diagonals(layer: int) -> tuple[int, int, int, int]:
+    """
+    Returns the set of diagonals at the given layer of a square spiral that
+    begins with one. The output is only valid for layers 2 and higher.
+
+    This implementation takes advantage of the fact that the odd squares are the
+    final diagonal in a given layer.
+    """
+    odd_square = ((2 * layer) - 1) ** 2
+    gap = 2 * (layer - 1)
+    return (odd_square - (gap * 3), odd_square - (gap * 2), odd_square - (gap * 1), odd_square)

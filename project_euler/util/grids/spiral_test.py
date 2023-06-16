@@ -2,7 +2,7 @@ from itertools import count
 from unittest import TestCase
 
 from project_euler.util.grids.grid import Grid
-from project_euler.util.grids.spiral import set_spiral
+from project_euler.util.grids.spiral import set_spiral, spiral_diagonals
 
 class TestSpiral(TestCase):
     def test_set_spiral(self):
@@ -16,3 +16,8 @@ class TestSpiral(TestCase):
         grid = Grid(rows=5)
         set_spiral(grid, count(start=1))
         self.assertEqual(Grid(grid_data=spiral_grid_data), grid)
+
+    def test_spiral_diagonals(self):
+        self.assertEqual(spiral_diagonals(2), (3, 5, 7, 9))
+        self.assertEqual(spiral_diagonals(3), (13, 17, 21, 25))
+        self.assertEqual(spiral_diagonals(4), (31, 37, 43, 49))
