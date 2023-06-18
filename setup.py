@@ -23,6 +23,10 @@ setup(
             language='c++',
         ),
         Extension(
+            name='project_euler.util.primes.is_prime',
+            sources=['project_euler/util/primes/is_prime.pyx'],
+        ),
+        Extension(
             name='project_euler.util.sequences.permutations',
             sources=['project_euler/util/sequences/permutations.pyx'],
             language='c++',
