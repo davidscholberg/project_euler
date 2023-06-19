@@ -1,6 +1,6 @@
 from unittest import TestCase
 
-
+from project_euler.util.
 
 class Test(TestCase):
     def test_(self):
