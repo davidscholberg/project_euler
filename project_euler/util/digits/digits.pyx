@@ -11,6 +11,22 @@ def digit_count(n: int) -> int:
         return 1
     return math.floor(math.log10(n)) + 1
 
+def digit_count_map(n: int) -> tuple[int, int, int, int, int, int, int, int, int, int]:
+    """Returns tuple that maps digits to digit counts for the given number."""
+    digit_count_map = [0] * 10
+    for digit in digits(n):
+        digit_count_map[digit] += 1
+    return tuple(digit_count_map)
+
+def digital_root(n: int) -> int:
+    """Returns the digital root of n."""
+    remaining_digits = digits(n)
+    while True:
+        digits_sum = sum(remaining_digits)
+        if digits_sum < 10:
+            return digits_sum
+        remaining_digits = digits(digits_sum)
+
 def digits(n: int) -> tuple[int]:
     """Individual digits from n in base 10."""
     return tuple(map(int, str(n)))

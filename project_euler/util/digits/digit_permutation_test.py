@@ -10,3 +10,4 @@ class TestDigitPermutation(TestCase):
         self.assertFalse(is_digit_permutation(1234, 3251))
         self.assertFalse(is_digit_permutation(1234, 3255))
         self.assertFalse(is_digit_permutation(1234, 5678))
+        self.assertFalse(is_digit_permutation(17173512, 25153757))
